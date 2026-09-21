@@ -1,0 +1,488 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #111827;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+/* SLIDE */
+
+.slide {
+    width: 100vw;
+    height: 100vh;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            #245f91 0%,
+            #123b64 35%,
+            #061a32 75%,
+            #020b18 100%
+        );
+
+    color: white;
+}
+
+
+.slide.active {
+    display: flex;
+}
+
+/* ĐƯỜNG TRANG TRÍ PHÍA TRÊN */
+
+.slide::before {
+    content: "";
+
+    position: absolute;
+
+    width: 700px;
+    height: 700px;
+
+    border: 2px solid rgba(100, 190, 255, 0.15);
+
+    border-radius: 50%;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    box-shadow:
+        0 0 0 80px rgba(100, 190, 255, 0.04),
+        0 0 0 160px rgba(100, 190, 255, 0.03),
+        0 0 0 240px rgba(100, 190, 255, 0.02);
+}
+
+.slide .content::after {
+    content: "";
+
+    position: absolute;
+
+    width: 150%;
+    height: 180px;
+
+    top: 45%;
+    left: -25%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(80, 180, 255, 0.15),
+        rgba(255, 255, 255, 0.08),
+        rgba(80, 180, 255, 0.15),
+        transparent
+    );
+
+    transform: rotate(-8deg);
+
+    pointer-events: none;
+}
+
+/* NỘI DUNG */
+
+.content {
+    width: 85%;
+    height: 80%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    position: relative;
+}
+
+/* LOGO NEWS */
+
+.content::before {
+    content: "NEWS";
+
+    position: absolute;
+
+    top: -40px;
+    left: 0;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    color: #ffffff;
+
+    border-left: 5px solid #d71920;
+
+    padding-left: 12px;
+}
+
+/* TIÊU ĐỀ */
+
+h1 {
+    font-size: 45px;
+
+    font-weight: 500;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 17px;
+
+    text-transform: uppercase;
+
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* DÒNG MÔ TẢ */
+
+p {
+    font-size: 24px;
+
+    color: #dce8f5;
+
+    line-height: 1.6;
+}
+
+/* VIDEO */
+
+video {
+    width: 85%;
+    max-width: 800px;
+    height: 600px;
+
+    margin-top: 30px;
+
+    border: 4px solid white;
+
+    border-radius: 4px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* THANH DƯỚI */
+
+.slide::after {
+    content: "BREAKING NEWS";
+
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding-left: 30px;
+
+    background: #d71920;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+}
+
+/* MŨI TÊN */
+
+.arrow {
+    position: fixed;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 55px;
+    height: 55px;
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.35);
+
+    color: white;
+
+    font-size: 30px;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+
+    z-index: 10;
+}
+
+.arrow:hover {
+    background: #d71920;
+
+    transform: translateY(-50%) scale(1.1);
+}
+
+#prev {
+    left: 25px;
+}
+
+#next {
+    right: 25px;
+}
+
+/* SỐ SLIDE */
+
+#counter {
+    position: fixed;
+
+    bottom: 60px;
+    right: 30px;
+
+    color: white;
+
+    font-size: 16px;
+
+    background: rgba(0, 0, 0, 0.35);
+
+    padding: 8px 15px;
+
+    border-radius: 3px;
+
+    z-index: 10;
+}
+
+/* CÁC VẬT THỂ BAY XUNG QUANH */
+
+.floating-elements {
+    position: fixed;
+
+    width: 100%;
+    height: 100%;
+
+    top: 0;
+    left: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 1;
+}
+
+
+/* Các chấm / biểu tượng */
+
+.orb {
+    position: absolute;
+
+    color: rgba(150, 220, 255, 0.45);
+
+    font-size: 35px;
+
+    text-shadow: 0 0 20px rgba(100, 200, 255, 0.7);
+
+    animation: floating 6s ease-in-out infinite;
+}
+
+
+/* Vị trí */
+
+.orb1 {
+    top: 18%;
+    left: 12%;
+
+    animation-delay: 0s;
+}
+
+.orb2 {
+    top: 30%;
+    right: 12%;
+
+    font-size: 28px;
+
+    animation-delay: 1s;
+}
+
+.orb3 {
+    bottom: 25%;
+    left: 18%;
+
+    font-size: 45px;
+
+    animation-delay: 2s;
+}
+
+.orb4 {
+    top: 65%;
+    right: 20%;
+
+    font-size: 30px;
+
+    animation-delay: 3s;
+}
+
+.orb5 {
+    bottom: 15%;
+    right: 10%;
+
+    font-size: 25px;
+
+    animation-delay: 4s;
+}
+
+
+/* Vòng tròn */
+
+.ring {
+    position: absolute;
+
+    border: 1px solid rgba(120, 210, 255, 0.15);
+
+    border-radius: 50%;
+
+    animation: rotate 15s linear infinite;
+}
+
+.ring1 {
+    width: 180px;
+    height: 180px;
+
+    top: 8%;
+    right: 8%;
+}
+
+.ring2 {
+    width: 100px;
+    height: 100px;
+
+    bottom: 12%;
+    left: 8%;
+
+    animation-duration: 10s;
+}
+
+.ring3 {
+    width: 250px;
+    height: 250px;
+
+    top: 55%;
+    right: -100px;
+
+    animation-duration: 20s;
+}
+
+
+/* Chuyển động bay */
+
+@keyframes floating {
+
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    25% {
+        transform: translate(15px, -20px) rotate(10deg);
+    }
+
+    50% {
+        transform: translate(-10px, -35px) rotate(-5deg);
+    }
+
+    75% {
+        transform: translate(-20px, -10px) rotate(8deg);
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+
+/* Vòng tròn xoay */
+
+@keyframes rotate {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+img {
+    max-width: 85%;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+.images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.img1 {
+    width: 500px;
+    max-height: 500px;
+    object-fit: contain;
+}
+
+.img2 {
+    width: 500px;
+    max-height: 500px;
+    object-fit: contain;
+}
+
+.chart-info {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+}
+
+.chart {
+    width: 48%;
+    display: flex;
+    justify-content: center;
+}
+
+.chart img {
+    max-width: 100%;
+    max-height: 48vh;
+    object-fit: contain;
+}
+
+.info {
+    width: 48%;
+    max-height: 50vh;
+    overflow-y: auto;
+    text-align: left;
+    padding-right: 10px;
+}
+
+.info p {
+    font-size: 18px;
+    line-height: 1.45;
+    margin-bottom: 12px;
+}
